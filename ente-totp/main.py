@@ -15,6 +15,7 @@ def cli():
 @cli.command('import')
 @click.argument("file", type=click.Path(exists=True))
 def import_file(file):
+    """Import secrets from the given file and create a database."""
     secret_dict = defaultdict(list) # uses parameterless lambda to create a new list for each key
 
     for service_name, username, secret in parse_secrets(file):
@@ -29,6 +30,7 @@ def import_file(file):
     print("Database created.")
 
 def parse_secrets(file_path="secrets.txt"):
+    """Parse the secrets from the given file."""
     secrets_list = []
     
     with open(file_path, "r") as secrets_file:
@@ -49,75 +51,77 @@ def parse_secrets(file_path="secrets.txt"):
     
     return secrets_list
 
-def output_data(totp_data, output_format):
+def format_data(service_name, service_data, output_type):
+    """Format the data based on the output type."""
     json_data = []
-    for service_name, service_data in totp_data:
-        if output_format not in ["json", "alfred"]:
-            print(f"Service: {service_name}")
-        for username, secret in service_data:
-            totp = pyotp.TOTP(secret)
-            current_code = totp.now()
-            
-            if output_format == "json":
-                json_data.append({
-                    "name": username,
-                    "totp": current_code
-                })
-            
-            elif output_format == "alfred":
-                json_data.append({
-                    "title": service_name,
-                    "subtitle": username,
-                    "arg": current_code,
-                    "icon": {
-                        "path": "./icon.png"
-                    }
-                })
-            
-            else:
-                if username:
-                    print(f'\t{username}: {current_code}')
-                else:
-                    print(f'\t{current_code}')
+    for username, secret in service_data:
+        totp = pyotp.TOTP(secret)
+        current_code = totp.now()
+        
+        if output_type == 'json':
+            json_data.append({
+                "name": username,
+                "totp": current_code
+            })
+        
+        elif output_type == 'alfred':
+            json_data.append({
+                "title": service_name,
+                "subtitle": current_code,
+                "arg": current_code,
+                "icon": {
+                    "path": "./icon.png"
+                }
+            })
+        
+        elif output_type == 'print':
+            print(f'\t{username}: {current_code}')
 
-    if output_format in ["json", "alfred"]:
+    if output_type in ['json', 'alfred']:
         results = {"items": json_data}
-        print(json.dumps(results, indent=4))
+        return json.dumps(results, indent=4)
     
-    elif not totp_data:
-        print("No matching service found")
-    
+    return None
+
 @cli.command('get')
 @click.argument('secret_id')
-@click.option("-o","output_format", type=click.Choice(["json", "alfred", "alien"]), default="alien", help="Data output format")
-def generate_totp(secret_id, output_format):
+@click.option("-j","json_output", is_flag=True)
+@click.option("-a","alfred_output", is_flag=True)
+def generate_totp(secret_id, json_output, alfred_output):
+    """Generate TOTP for the given secret_id."""
     try:
         with open(DB_FILE, "r") as file:
             data = json.load(file)
         
-        totp_data = []
+        totp_data = None
         for service_name, service_data in data.items():
-            if secret_id.lower() in service_name.lower():
-                totp_data.append((service_name, service_data))
+            if secret_id.lower() == service_name.lower():
+                totp_data = service_name, service_data
+                break
 
         if totp_data:
-            output_data(totp_data, output_format)
+            service_name, service_data = totp_data
             
+            # Determine the output type
+            if json_output:
+                output_type = 'json'
+            elif alfred_output:
+                output_type = 'alfred'
+            else:
+                output_type = 'print'
+            
+            output = format_data(service_name, service_data, output_type)
+            
+            if output:
+                print(output)
+
         else:
             # return an empty array in "items"
-            output_data([(secret_id.lower(), [])], output_format)
+            print(json.dumps({"items": []}, indent=4))
     
     except Exception as e:
-        print(json.dumps({
-            "items": [{
-                "title": "error",
-                "subtitle": str(e),
-                "arg": str(e),
-                "icon": {
-                    "path": "./icon.png"
-                }
-            }]
-        }, indent=4))
+        print(json.dumps({"items": [], "error": str(e)}, indent=4))
+
 
 if __name__ == "__main__":
     cli()
