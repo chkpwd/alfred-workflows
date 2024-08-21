@@ -1,2 +1,4 @@
-click/__pycache__/
-pyotp/__pycache__/
+# Ignore all compiled Python files in the click and pyotp directories
+click/__pycache__/*
+pyotp/__pycache__/*
+pyotp/contrib/__pycache__/*
