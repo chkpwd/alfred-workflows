@@ -68,14 +68,6 @@ def format_data(service_name, username, current_totp, next_totp, output_type):
             "service_data": subset,
         }
 
-    elif output_type == "print":
-        print(f"Service: {service_name}")
-        print(f"Current TOTP: {current_totp}")
-        print(f"Next TOTP: {next_totp}")
-        if username:
-            print(f"Username: {username}")
-        print()
-
     return None
 
 
@@ -84,8 +76,8 @@ def format_data(service_name, username, current_totp, next_totp, output_type):
 @click.option(
     "-o",
     "output_format",
-    type=click.Choice(["json", "alfred", "print"]),
-    default="print",
+    type=click.Choice(["json", "alfred"]),
+    default="json",
     help="Data output format",
 )
 def generate_totp(secret_id, output_format):
@@ -105,11 +97,9 @@ def generate_totp(secret_id, output_format):
                     if formatted_data:
                         items.append(formatted_data)
 
-        if output_format == "alfred":
+        if items:
             print(json.dumps({"items": items}, indent=4))
-        elif output_format == "json":
-            print(json.dumps({"items": items}, indent=4))
-        elif output_format == "print" and not items:
+        else:
             print("No matching services found.")
 
     except Exception as e:
