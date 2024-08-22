@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Secrets files
+secrets.txt
+ente-auth-codes*
+
 # Environments
 .env
 .venv
