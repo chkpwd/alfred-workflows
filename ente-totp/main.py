@@ -17,7 +17,7 @@ def cli():
 @cli.command("import")
 @click.argument("file", type=click.Path(exists=True))
 def import_file(file):
-    secret_dict = defaultdict(list)
+    secret_dict = defaultdict(list) # less strict than regular dict
     for service_name, username, secret in parse_secrets(file):
         secret_dict[service_name].append((username, secret))
     DB_FILE.parent.mkdir(parents=True, exist_ok=True)
