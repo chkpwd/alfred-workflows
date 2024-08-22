@@ -2,7 +2,6 @@ import json
 import pathlib
 from collections import defaultdict
 from datetime import datetime, timedelta
-from urllib.parse import parse_qs, unquote, urlparse
 
 import click
 import pyotp
@@ -34,15 +33,12 @@ def parse_secrets(file_path="secrets.txt"):
         for line in secrets_file:
             line = line.strip()
             if line:
-                parsed_url = urlparse(line)
-                if parsed_url.scheme == "otpauth":
-                    path_items = unquote(parsed_url.path).strip("/").split(":", 1)
-                    if len(path_items) == 2:
-                        service_name, username = path_items[0], path_items[1]
-                    else:
-                        service_name, username = path_items[0].strip(":"), ""
-                    query_params = parse_qs(parsed_url.query)
-                    secret = query_params.get("secret", [None])[0]
+                line = line.replace("sha", "SHA").split("codeDisplay")[0][:-1]
+                parsed_uri = pyotp.parse_uri(line)
+                if parsed_uri:
+                    service_name = parsed_uri.issuer
+                    username = parsed_uri.name
+                    secret = parsed_uri.secret
                     if secret:
                         secrets_list.append((service_name, username, secret))
 
