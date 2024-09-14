@@ -14,7 +14,7 @@ jobs:
 
       - name: Build Alfred workflow
         id: builder
-        uses: almibarss/build-alfred-workflow@v1
+        uses: almibarss/build-alfred-workflow@v1.1
         with:
           workflow_dir: ente-totp
           exclude_patterns: '*.pyc *__pycache__/*'
