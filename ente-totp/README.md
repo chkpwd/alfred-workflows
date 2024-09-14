@@ -1,10 +1,6 @@
 # An Alfred Workflow that uses your Ente Exports
 
-Ente Auth CLI does [not support](https://github.com/ente-io/ente/discussions/716) exporting TOTP codes. To use this project, please export from the Ente app and then
-and then import them into the workflow's database by choosing the export file using the "Configure Workflow" button 
-in the workflow setup and then import using the 'ente import' Alfred command. 
-
-The file can be deleted once imported.
+The Ente Auth CLI does not support exporting TOTP codes. To use this project, please export TOTP codes from the Ente app and then import them into the workflow's database by selecting the export file using the "Configure Workflow" button in the workflow setup. You can import the file using the `ente import` Alfred command. Once imported, you can delete the file.
 
 > [!NOTE]
 > In the future, the workflow will take care of the import.
@@ -18,7 +14,8 @@ The file can be deleted once imported.
 ## Instructions
 
 1. Open Alfred
-2. Go to workflows
-3. Click the Ente 2FA workflow and click the Configure Workflow button
-4. Click the file button next to the Ente Export File and browse to the Ente Auth plain text export of your two factor codes
-5. Run the alfred command 'ente import'
+2. Go to Workflows.
+3. Click the "Enter 2FA" workflow and click the Configure Workflow button.
+4. Next, click the file button next to "Ente Export File" and browse to your Ente Auth plain text export of two-factor codes.
+5. Finally, run the Alfred command `ente import`.
+
