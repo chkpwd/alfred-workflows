@@ -4,23 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string></string>
-	<key>category</key>
-	<string>Tools</string>
 	<key>connections</key>
 	<dict>
-		<key>0E38FB93-F4AB-4414-AFE5-E10B80176C38</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>61342121-5F6E-4340-A89B-F4DC5D5A7965</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>548A4F34-31FF-4E4B-AD7C-1CA4D8391AAA</key>
 		<array>
 			<dict>
@@ -61,27 +46,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>{var:keyword}</string>
-				<key>subtext</key>
-				<string>Getting TOTP Codes...</string>
-				<key>text</key>
-				<string>{const:alfred_workflow_name}</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>0E38FB93-F4AB-4414-AFE5-E10B80176C38</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>alfredfiltersresults</key>
 				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
@@ -95,11 +59,11 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>ente</string>
+				<string>{var:keyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<false/>
+				<true/>
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
@@ -159,11 +123,11 @@
 				<key>focusedappvariablename</key>
 				<string></string>
 				<key>hotkey</key>
-				<integer>0</integer>
+				<integer>14</integer>
 				<key>hotmod</key>
-				<integer>0</integer>
+				<integer>1703936</integer>
 				<key>hotstring</key>
-				<string></string>
+				<string>E</string>
 				<key>leftcursor</key>
 				<false/>
 				<key>modsmode</key>
@@ -178,31 +142,83 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>ente import</string>
+				<key>queuedelaycustom</key>
+				<integer>10</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>2</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>importing....</string>
+				<key>script</key>
+				<string>python3 main.py import $export_file_path</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>import your ente data</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3101A957-02C3-4D0C-8B13-1C3721459261</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>An Alfred Workflow that uses your Ente Exports
+Ente Auth CLI does not support exporting TOTP codes. To use this project, please export from the Ente app and then import them into the workflow's database by choosing the export file using the "Configure Workflow" button in the workflow setup and then import using the 'ente import' Alfred command.
+
+The file can be deleted once imported.</string>
 	<key>uidata</key>
 	<dict>
-		<key>0E38FB93-F4AB-4414-AFE5-E10B80176C38</key>
+		<key>3101A957-02C3-4D0C-8B13-1C3721459261</key>
 		<dict>
 			<key>xpos</key>
-			<real>40</real>
+			<real>250</real>
 			<key>ypos</key>
-			<real>75</real>
+			<real>330</real>
 		</dict>
 		<key>548A4F34-31FF-4E4B-AD7C-1CA4D8391AAA</key>
 		<dict>
 			<key>xpos</key>
-			<real>40</real>
+			<real>30</real>
 			<key>ypos</key>
-			<real>220</real>
+			<real>305</real>
 		</dict>
 		<key>61342121-5F6E-4340-A89B-F4DC5D5A7965</key>
 		<dict>
 			<key>xpos</key>
-			<real>310</real>
+			<real>240</real>
 			<key>ypos</key>
-			<real>140</real>
+			<real>105</real>
 		</dict>
 		<key>89FF22C4-362B-4675-AEFA-B15E67898E1B</key>
 		<dict>
@@ -218,7 +234,7 @@
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>code||totp||en</string>
+				<string>code||totp||en||ea</string>
 				<key>placeholder</key>
 				<string>en</string>
 				<key>required</key>
@@ -235,7 +251,68 @@
 			<key>variable</key>
 			<string>keyword</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>filtermode</key>
+				<integer>2</integer>
+				<key>placeholder</key>
+				<string>plain text Ente Auth export</string>
+				<key>required</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Point this to the plain text export file from Ente Auth containing your 2FA data. It can be deleted after initial import.</string>
+			<key>label</key>
+			<string>Ente Export File</string>
+			<key>type</key>
+			<string>filepicker</string>
+			<key>variable</key>
+			<string>export_file_path</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>include username in results title</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>username_in_title</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<true/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>include username in results subtitle</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>username_in_subtitle</string>
+		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
 	<string></string>
 	<key>webaddress</key>

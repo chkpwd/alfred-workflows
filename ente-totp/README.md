@@ -1,8 +1,14 @@
 # An Alfred Workflow that uses your Ente Exports
 
-Ente Auth does [not support](https://github.com/ente-io/ente/discussions/716) exporting TOTP codes. To use this project, please export from the Ente app and then manually import them into the workflow's database using the `import` parameter.
+Ente Auth CLI does [not support](https://github.com/ente-io/ente/discussions/716) exporting TOTP codes. To use this project, please export from the Ente app and then
+and then import them into the workflow's database by choosing the export file using the "Configure Workflow" button 
+in the workflow setup and then import using the 'ente import' Alfred command. 
 
-> [!NOTE] **Note**: In the future, the workflow will take care of the import.
+The file can be deleted once imported.
+
+> [!NOTE]
+> In the future, the workflow will take care of the import.
+> In addtion, once support for exporting codes via CLI is supported, we will use that instead.
 
 ## Setup
 
@@ -13,16 +19,6 @@ Ente Auth does [not support](https://github.com/ente-io/ente/discussions/716) ex
 
 1. Open Alfred
 2. Go to workflows
-3. Right click the Ente 2FA workflow and press Open In Finder.
-4. Export in plain text your Ente 2FA codes
-5. Rename that file to secrets.txt and put it in the folder that got opened previously
-
-![image](https://github.com/user-attachments/assets/0964cb6c-e453-4be9-a8a8-2891001f2762)
-
-It should look something like this
-
-6. Open a terminal
-7. Navigate to the folder that got contains the `main.py` file
-8. Run `python main.py import secrets.txt`
-9. Run `ente` in Alfred and let the database populate
-
+3. Click the Ente 2FA workflow and click the Configure Workflow button
+4. Click the file button next to the Ente Export File and browse to the Ente Auth plain text export of your two factor codes
+5. Run the alfred command 'ente import'
