@@ -25,4 +25,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ steps.builder.outputs.workflow_file }}
+          files: ${{ steps.builder.outputs.OUTPUT_FILE }}
