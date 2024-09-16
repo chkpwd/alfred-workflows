@@ -22,11 +22,7 @@ jobs:
         env:
           WORKFLOW_VERSION: ${{ github.ref_name }}
 
-      - name: Check output
-        run: |
-          echo "Output file is: ${{ steps.builder.outputs.OUTPUT_FILE }}"
-
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ steps.builder.outputs.workflow_file }}
+          files: ${{ steps.builder.outputs.OUTPUT_FILE }}
