@@ -5,6 +5,10 @@ __pycache__/
 
 .DS_Store
 
+# build files
+vendor/
+*.alfredworkflow
+
 # Secrets files
 secrets.txt
 ente-auth-codes*
