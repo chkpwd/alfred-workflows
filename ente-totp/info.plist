@@ -202,30 +202,30 @@ The file can be deleted once imported.</string>
 		<key>3101A957-02C3-4D0C-8B13-1C3721459261</key>
 		<dict>
 			<key>xpos</key>
-			<real>250</real>
+			<real>250.0</real>
 			<key>ypos</key>
-			<real>330</real>
+			<real>330.0</real>
 		</dict>
 		<key>548A4F34-31FF-4E4B-AD7C-1CA4D8391AAA</key>
 		<dict>
 			<key>xpos</key>
-			<real>30</real>
+			<real>30.0</real>
 			<key>ypos</key>
-			<real>305</real>
+			<real>305.0</real>
 		</dict>
 		<key>61342121-5F6E-4340-A89B-F4DC5D5A7965</key>
 		<dict>
 			<key>xpos</key>
-			<real>240</real>
+			<real>240.0</real>
 			<key>ypos</key>
-			<real>105</real>
+			<real>105.0</real>
 		</dict>
 		<key>89FF22C4-362B-4675-AEFA-B15E67898E1B</key>
 		<dict>
 			<key>xpos</key>
-			<real>495</real>
+			<real>495.0</real>
 			<key>ypos</key>
-			<real>140</real>
+			<real>140.0</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -314,7 +314,7 @@ The file can be deleted once imported.</string>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string></string>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/chkpwd/alfred-workflows/main/tree/ente-totp</string>
 </dict>

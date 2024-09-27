@@ -19,3 +19,14 @@ The Ente Auth CLI does not support exporting TOTP codes. To use this project, pl
 4. Next, click the file button next to "Ente Export File" and browse to your Ente Auth plain text export of two-factor codes.
 5. Finally, run the Alfred command `ente import`.
 
+## Local Development
+
+### Install dependencies
+./build-deps.sh
+
+### Build alfred workflow file
+./build.sh
+
+### Update requirements
+pip install pip-tools
+pip-compile requirements.in
